@@ -36,10 +36,10 @@ or
 Example:
 
 ```
-let { parseJSONReporterAndSyncResultsToXrayCloud } = require('qansigliere-json-reporter-integration-with-xray-cloud');
+let { parseJSONReporterAndSyncResultsToXrayCloud, parseJSONReporterFolderAndGenerateCSVFile } = require('qansigliere-json-reporter-integration-with-xray-cloud');
 
 (async function Integration() {
-
+    parseJSONReporterFolderAndGenerateCSVFile('/../results/jsonReporter/'); // Generates a CSV file with test results
 })();
 ```
 
