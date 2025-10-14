@@ -1,6 +1,6 @@
 {
   "name": "qansigliere-json-reporter-integration-with-xray-cloud",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The main idea of this library created in the JavaScript language is to provide a better way to synchronize json-reporter results with Xray Cloud.",
   "main": "index.js",
   "scripts": {
