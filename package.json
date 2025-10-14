@@ -1,0 +1,42 @@
+{
+  "name": "qansigliere-json-reporter-integration-with-xray-cloud",
+  "version": "0.0.1",
+  "description": "The main idea of this library created in the JavaScript language is to provide a better way to synchronize json-reporter results with Xray Cloud.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QANSIGLIERE/WebdriverIO-JSON-Reporter-integration-with-Xray-Cloud.git"
+  },
+  "keywords": [
+    "webdriver",
+    "webdriverio",
+    "mocha",
+    "json",
+    "reporter",
+    "json-reporter",
+    "xray",
+    "api",
+    "test",
+    "run",
+    "test",
+    "case",
+    "report",
+    "qansigliere",
+    "webdriver",
+    "wdio",
+    "wdio-reporter",
+    "json",
+    "cloud",
+    "xray",
+    "cloud"
+  ],
+  "author": "qansigliere@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/QANSIGLIERE/WebdriverIO-JSON-Reporter-integration-with-Xray-Cloud/issues"
+  },
+  "homepage": "https://github.com/QANSIGLIERE/WebdriverIO-JSON-Reporter-integration-with-Xray-Cloud#readme"
+}
