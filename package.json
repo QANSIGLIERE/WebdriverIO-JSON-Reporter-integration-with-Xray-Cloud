@@ -41,6 +41,9 @@
   "homepage": "https://github.com/QANSIGLIERE/WebdriverIO-JSON-Reporter-integration-with-Xray-Cloud#readme",
   "dependencies": {
     "qansigliere-fs-utils": "^0.3.0",
-    "qansigliere-xray-cloud-api-integration": "^0.0.3"
+    "qansigliere-xray-cloud-api-integration": "^0.0.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }
