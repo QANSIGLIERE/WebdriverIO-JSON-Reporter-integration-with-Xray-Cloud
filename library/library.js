@@ -70,4 +70,88 @@ function parseJSONReporterFolderAndGenerateCSVFile(pathToFolder) {
     return createFileFromString(__dirname + pathToFolder + '/results.csv', csvReport);
 }
 
+async function syncResultsToXrayCloud(
+    reportResults,
+    client_id,
+    client_secret,
+    testExecutionKey,
+    jiraProject,
+    testExecutionSummary,
+    testPlanKey,
+    testEnvironments,
+) {
+    let xrayCloudAPI = new XRAYCloud_API(client_id, client_secret);
+
+    let executionResultsJSON = {
+        tests: [],
+    };
+
+    if (testExecutionKey) {
+        executionResultsJSON['testExecutionKey'] = testExecutionKey;
+    } else {
+        executionResultsJSON['info'] = {
+            project: jiraProject,
+            summary: testExecutionSummary,
+            description:
+                'This execution is automatically created when importing execution results from an external source',
+            //"version" : "v1.3",
+            //"user" : "admin",
+            //"revision" : "1.0.42134",
+            //"startDate" : "2014-08-30T11:47:35+01:00",
+            //"finishDate" : "2014-08-30T11:53:00+01:00",
+            testPlanKey: testPlanKey,
+            testEnvironments: testEnvironments,
+        };
+    }
+
+    // Add info about test results
+    for (let testCaseResult of reportResults) {
+        executionResultsJSON['tests'].push({
+            testKey: testCaseResult.id,
+            start: testCaseResult.start,
+            finish: testCaseResult.end,
+            comment: testCaseResult.err,
+            status: testCaseResult.state,
+        });
+    }
+
+    console.log(JSON.stringify(await xrayCloudAPI.postXrayJSONResults(executionResultsJSON)));
+}
+
+async function parseJSONReporterAndSyncResultsToXrayCloud(
+    pathToFolderWithJSONResults,
+    client_id,
+    client_secret,
+    testExecutionKey,
+    jiraProject,
+    testExecutionSummary,
+    testPlanKey,
+    testEnvironments,
+) {
+    if (pathToFolderWithJSONResults && client_id && client_secret) {
+        // Parse Mochawesome report
+        let reportResults = parseJSONReporterFolder(pathToFolderWithJSONResults);
+
+        // Testrail Integration
+        await syncResultsToXrayCloud(
+            reportResults,
+            client_id,
+            client_secret,
+            testExecutionKey,
+            jiraProject,
+            testExecutionSummary,
+            testPlanKey,
+            testEnvironments,
+        );
+    } else {
+        console.log(`
+One of the following parameters is missing:
+Path to the folder with JSON results: ${pathToFolderWithJSONResults}
+client_id: ${client_id}
+client_secret: ${client_secret}`);
+    }
+}
+
 module.exports.parseJSONReporterFolderAndGenerateCSVFile = parseJSONReporterFolderAndGenerateCSVFile;
+module.exports.extractTestCaseIDs = extractTestCaseIDs;
+module.exports.parseJSONReporterAndSyncResultsToXrayCloud = parseJSONReporterAndSyncResultsToXrayCloud;

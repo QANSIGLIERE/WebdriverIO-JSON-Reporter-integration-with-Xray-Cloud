@@ -29,7 +29,7 @@ or
 `it("ASQ-1418, ASQ-1413, ASQ-1415 - Change Item Coursing", async () => {`
 
 2. You should have Xray Cloud CLIENT_ID and CLIENT_SECRET keys for the API integration
-3. You need to know the project id and suite id values
+3. You need to know the project name and test run ID or test execution ID
 
 ## How to use it
 
@@ -39,7 +39,28 @@ Example:
 let { parseJSONReporterAndSyncResultsToXrayCloud, parseJSONReporterFolderAndGenerateCSVFile } = require('qansigliere-json-reporter-integration-with-xray-cloud');
 
 (async function Integration() {
-    parseJSONReporterFolderAndGenerateCSVFile('/../results/jsonReporter/'); // Generates a CSV file with test results
+    // Generates a CSV file with test results
+    parseJSONReporterFolderAndGenerateCSVFile('/../results/jsonReporter/');
+
+    // Sync results with existing Test Execution ticket
+    await parseJSONReporterAndSyncResultsToXrayCloud(
+        '/../results/jsonReporter/', // Path to the folder with results
+        '__XRAY_CLIENT_ID__',
+        '__XRAY_CLIENT_SECRET__',
+        'DEMO-10153', // Existing Test Execution
+    );
+
+    // Create a new Test Execution ticket and sync results
+    await parseJSONReporterAndSyncResultsToXrayCloud(
+        '/../results/jsonReporter/', // Path to the folder with results
+        '__XRAY_CLIENT_ID__',
+        '__XRAY_CLIENT_SECRET__',
+        '',
+        'ASQ', // Jira Project Name
+        "Execution of automated tests for release v1.3", // Summart
+        "DEMO-100", // testPlanKey
+        ["iOS", "Android"] // testEnvironments
+    );
 })();
 ```
 
