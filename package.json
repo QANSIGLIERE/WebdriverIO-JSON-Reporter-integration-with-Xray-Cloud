@@ -1,6 +1,6 @@
 {
   "name": "qansigliere-json-reporter-integration-with-xray-cloud",
-  "version": "0.0.3",
+  "version": "2026.4.6",
   "description": "The main idea of this library created in the JavaScript language is to provide a better way to synchronize json-reporter results with Xray Cloud.",
   "main": "index.js",
   "scripts": {
@@ -40,8 +40,8 @@
   },
   "homepage": "https://github.com/QANSIGLIERE/WebdriverIO-JSON-Reporter-integration-with-Xray-Cloud#readme",
   "dependencies": {
-    "qansigliere-fs-utils": "^0.3.0",
-    "qansigliere-xray-cloud-api-integration": "^0.0.4"
+    "qansigliere-fs-utils": "^2026.3.9",
+    "qansigliere-xray-cloud-api-integration": "^2026.4.6-2"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

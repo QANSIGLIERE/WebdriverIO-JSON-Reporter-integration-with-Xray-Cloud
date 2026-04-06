@@ -4,7 +4,7 @@ const path = require('path');
 var { createFileFromString } = require('qansigliere-fs-utils');
 
 function extractTestCaseIDs(fullTitle) {
-    return Array.from(fullTitle.matchAll(/\D+-\d+/g), m => m[0]);
+    return Array.from(fullTitle.matchAll(/[A-z]+-\d+/g), m => m[0]);
 }
 
 function parseJSONReporterFolder(pathToFolder) {
